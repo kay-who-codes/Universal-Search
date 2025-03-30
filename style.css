@@ -3,7 +3,7 @@
     --card-bg: #1e1e1e;
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
-    --accent-color: #bb86fc;
+    --accent-color: #ff8000;
     --accent-hover: #9a67ea;
     --input-bg: #2d2d2d;
     --input-border: #3d3d3d;
@@ -120,7 +120,6 @@ h1 {
 .search-option i {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: var(--accent-color);
 }
 
 .search-option .name {
