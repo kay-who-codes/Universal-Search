@@ -187,6 +187,7 @@ footer i {
     <script>
        // Array of search options - easily editable by developers
 const searchOptions = [
+    // Search Engines
     {
         name: "Google",
         icon: "fab fa-google",
@@ -194,23 +195,31 @@ const searchOptions = [
         color: "#f9d347" // Google yellow
     },
     {
+        name: "DuckDuckGo",
+        icon: "fas fa-search",
+        url: "https://duckduckgo.com/?q=",
+        color: "#DE5833" // DuckDuckGo red
+    },
+    {
         name: "YouTube",
         icon: "fab fa-youtube",
         url: "https://www.youtube.com/results?search_query=",
         color: "#FF0000" // YouTube red
     },
+    // Gaming
     {
-        name: "Wikipedia",
-        icon: "fab fa-wikipedia-w",
-        url: "https://en.wikipedia.org/wiki/Special:Search?search=",
-        color: "#FFFFFF" // Wikipedia white
+        name: "Steam DB",
+        icon: "fa-brands fa-steam-symbol",
+        url: "https://steamdb.info/search/?a=all&q=",
+        color: "#5a91d7" // Steam blue
     },
     {
-        name: "GitHub",
-        icon: "fab fa-github",
-        url: "https://github.com/search?q=",
-        color: "#8B5CF6" // GitHub purple
+        name: "CD Keys",
+        icon: "fa-solid fa-gamepad",
+        url: "https://www.cdkeys.com/#q=",
+        color: "#5a91d7" // CD Keys blue
     },
+    // Social Media
     {
         name: "Twitter",
         icon: "fab fa-twitter",
@@ -236,6 +245,13 @@ const searchOptions = [
         color: "#0077B5" // LinkedIn blue
     },
     {
+        name: "Pinterest",
+        icon: "fab fa-pinterest",
+        url: "https://www.pinterest.com/search/pins/?q=",
+        color: "#E60023" // Pinterest red
+    },
+    // Shopping
+    {
         name: "Amazon",
         icon: "fab fa-amazon",
         url: "https://www.amazon.co.uk/s?k=",
@@ -259,23 +275,12 @@ const searchOptions = [
         url: "https://www.vinted.co.uk/catalog?search_text=",
         color: "#217682" // Vinted teal
     },
-    {
-        name: "DuckDuckGo",
-        icon: "fas fa-search",
-        url: "https://duckduckgo.com/?q=",
-        color: "#DE5833" // DuckDuckGo red
-    },
+    // Entertainment
     {
         name: "IMDb",
         icon: "fab fa-imdb",
         url: "https://www.imdb.com/find?q=",
         color: "#F5C518" // IMDb yellow
-    },
-    {
-        name: "Steam DB",
-        icon: "fa-brands fa-steam-symbol",
-        url: "https://steamdb.info/search/?a=all&q=",
-        color: "#5a91d7" // Steam blue
     },
     {
         name: "Spotify",
@@ -289,11 +294,18 @@ const searchOptions = [
         url: "https://soundcloud.com/search?q=",
         color: "#FF5500" // Soundcloud orange
     },
+    // Learning
     {
         name: "Google Maps",
         icon: "fas fa-map-marker-alt",
         url: "https://www.google.com/maps/search/",
         color: "#34A853" // Google Maps green
+    },
+    {
+        name: "Wikipedia",
+        icon: "fab fa-wikipedia-w",
+        url: "https://en.wikipedia.org/wiki/Special:Search?search=",
+        color: "#FFFFFF" // Wikipedia white
     },
     {
         name: "Google Arts and Culture",
@@ -314,12 +326,6 @@ const searchOptions = [
         color: "#B92B27" // Quora red
     },
     {
-        name: "Pinterest",
-        icon: "fab fa-pinterest",
-        url: "https://www.pinterest.com/search/pins/?q=",
-        color: "#E60023" // Pinterest red
-    },
-    {
         name: "LessWrong",
         icon: "fa-solid fa-brain",
         url: "https://www.lesswrong.com/search?query=",
@@ -330,6 +336,13 @@ const searchOptions = [
         icon: "fab fa-stack-overflow",
         url: "https://libgen.li/index.php?req=",
         color: "#1d3a87" // LibGen blue
+    },
+    // Programming
+    {
+        name: "GitHub",
+        icon: "fab fa-github",
+        url: "https://github.com/search?q=",
+        color: "#8B5CF6" // GitHub purple
     }
 ];
 
