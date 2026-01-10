@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌍 Universal Search</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
     --bg-color: #121212;
@@ -135,6 +135,108 @@ h1 {
     font-weight: 500;
 }
 
+/* Bookmarks Section Styles */
+.bookmarks-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--input-border);
+}
+
+.bookmarks-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.bookmarks-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #03dac6, var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bookmarks-search {
+    margin-bottom: 2rem;
+}
+
+.bookmarks-search input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+    box-shadow: var(--shadow);
+}
+
+.bookmarks-search input::placeholder {
+    color: var(--text-secondary);
+}
+
+.bookmarks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.bookmark-category {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.bookmark-category.hidden {
+    display: none;
+}
+
+.category-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+}
+
+.bookmark-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bookmark-item {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s, transform 0.2s;
+    display: block;
+    padding: 4px 0;
+}
+
+.bookmark-item:hover {
+    transform: translateX(5px);
+    opacity: 0.8;
+}
+
+.bookmark-item.hidden {
+    display: none;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 20px;
+    font-size: 1.1rem;
+    display: none;
+}
+
+.no-results.show {
+    display: block;
+}
+
 footer {
     text-align: center;
     margin-top: 3rem;
@@ -149,6 +251,10 @@ footer i {
 @media (max-width: 600px) {
     .search-options {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .bookmarks-container {
+        grid-template-columns: 1fr;
     }
     
     h1 {
@@ -177,6 +283,26 @@ footer i {
             <div class="search-options">
                 <!-- Search options will be populated by JavaScript -->
             </div>
+
+            <!-- Bookmarks Section -->
+            <section class="bookmarks-section">
+                <div class="bookmarks-header">
+                    <h2>Bookmarks</h2>
+                    <p class="subtitle">Quick access to your favorite sites</p>
+                </div>
+
+                <div class="bookmarks-search">
+                    <input type="text" id="bookmarks-search-input" placeholder="Search bookmarks...">
+                </div>
+
+                <div class="bookmarks-container" id="bookmarks-container">
+                    <!-- Bookmarks will be populated by JavaScript -->
+                </div>
+
+                <div class="no-results" id="no-results">
+                    No bookmarks found matching your search.
+                </div>
+            </section>
         </main>
 
         <footer>
@@ -187,7 +313,11 @@ footer i {
     <script>
        // Array of search options - easily editable by developers
 const searchOptions = [
+  
+  
     // Search Engines
+  
+  
     {
         name: "Google",
         icon: "fab fa-google",
@@ -218,7 +348,11 @@ const searchOptions = [
         url: "https://www.rhymezone.com/r/rhyme.cgi?Word=",
         color: "#ecd13c" // Rhymezone yellow
     },
+  
+  
     // Gaming
+  
+  
     {
         name: "Steam DB",
         icon: "fa-brands fa-steam-symbol",
@@ -231,7 +365,11 @@ const searchOptions = [
         url: "https://www.cdkeys.com/#q=",
         color: "#5a91d7" // CD Keys blue
     },
+  
+  
     // Social Media
+  
+  
     {
         name: "Twitter",
         icon: "fab fa-twitter",
@@ -262,7 +400,11 @@ const searchOptions = [
         url: "https://www.pinterest.com/search/pins/?q=",
         color: "#E60023" // Pinterest red
     },
+  
+  
     // Shopping
+  
+  
     {
         name: "Amazon",
         icon: "fab fa-amazon",
@@ -287,7 +429,11 @@ const searchOptions = [
         url: "https://www.vinted.co.uk/catalog?search_text=",
         color: "#217682" // Vinted teal
     },
+  
+  
     // Entertainment
+  
+  
     {
         name: "IMDb",
         icon: "fab fa-imdb",
@@ -306,7 +452,11 @@ const searchOptions = [
         url: "https://soundcloud.com/search?q=",
         color: "#FF5500" // Soundcloud orange
     },
+  
+  
     // Learning
+  
+  
     {
         name: "Google Maps",
         icon: "fas fa-map-marker-alt",
@@ -349,7 +499,11 @@ const searchOptions = [
         url: "https://libgen.li/index.php?req=",
         color: "#1d3a87" // LibGen blue
     },
+  
+  
     // Programming
+  
+  
     {
         name: "GitHub",
         icon: "fab fa-github",
@@ -358,14 +512,158 @@ const searchOptions = [
     }
 ];
 
+// Bookmarks data - easily editable by developers
+const bookmarks = [
+  
+  
+    // Learning
+  
+  
+    {
+        name: "YouTube",
+        url: "https://www.youtube.com/",
+        category: "Learning",
+        tags: ["education", "Video"]
+    },
+  
+    
+    // Programming
+  
+  
+    {
+        name: "GitHub",
+        url: "https://github.com",
+        category: "Programming",
+        tags: ["development", "code", "repository", "version control", "git"]
+    },
+    {
+        name: "CodePen",
+        url: "https://codepen.io",
+        category: "Programming",
+        tags: ["development", "code", "frontend", "playground"]
+    },
+  
+    
+    // Reading
+  
+  
+    {
+        name: "Google Play Books",
+        url: "https://play.google.com/books",
+        category: "Reading",
+        tags: ["Learning", "blog", "writing", "stories"]
+    },
+  
+    
+    // Social Media
+  
+  
+    {
+        name: "Twitter",
+        url: "https://twitter.com",
+        category: "Social Media",
+        tags: ["social", "microblogging", "news"]
+    },
+    {
+        name: "Reddit",
+        url: "https://www.reddit.com",
+        category: "Social Media",
+        tags: ["social", "community", "forums", "discussion"]
+    },
+    {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com",
+        category: "Social Media",
+        tags: ["social", "professional", "networking", "jobs"]
+    },
+    {
+        name: "Discord",
+        url: "https://discord.com",
+        category: "Social Media",
+        tags: ["social", "chat", "community", "voice"]
+    },
+  
+    
+    // AI Chat
+  
+  
+    {
+        name: "ChatGPT",
+        url: "https://chat.openai.com",
+        category: "AI Chat",
+        tags: ["ai", "chatbot", "assistant", "openai"]
+    },
+    {
+        name: "Claude",
+        url: "https://claude.ai",
+        category: "AI Chat",
+        tags: ["ai", "chatbot", "assistant", "anthropic"]
+    },
+    {
+        name: "Google Gemini",
+        url: "https://gemini.google.com",
+        category: "AI Chat",
+        tags: ["ai", "chatbot", "assistant", "google"]
+    },
+    {
+        name: "Lumo",
+        url: "https://lumo.proton.me/u/0/",
+        category: "AI Chat",
+        tags: ["ai", "chatbot", "private", "assistant"]
+    },
+  
+    
+    // Tools
+  
+  
+    {
+        name: "Notion",
+        url: "https://www.notion.so",
+        category: "Tools",
+        tags: ["productivity", "notes", "workspace", "organization"]
+    },
+    {
+        name: "Figma",
+        url: "https://www.figma.com",
+        category: "Tools",
+        tags: ["design", "ui", "ux", "prototype"]
+    },
+    {
+        name: "Canva",
+        url: "https://www.canva.com",
+        category: "Tools",
+        tags: ["design", "graphics", "templates"]
+    },
+    {
+        name: "Trello",
+        url: "https://trello.com",
+        category: "Tools",
+        tags: ["productivity", "project management", "kanban"]
+    }
+];
+
+// Category colors - easily customizable
+const categoryColors = {
+    "Learning": "#4A90E2",
+    "Programming": "#50C878",
+    "Reading": "#FF8C42",
+    "Social Media": "#9B59B6",
+    "AI Chat": "#FF69B4",
+    "Tools": "#FFD700"
+};
+
 // DOM elements
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 const searchOptionsContainer = document.querySelector('.search-options');
+const bookmarksSearchInput = document.getElementById('bookmarks-search-input');
+const bookmarksContainer = document.getElementById('bookmarks-container');
+const noResults = document.getElementById('no-results');
 
 // Initialize the app
 function init() {
     renderSearchOptions();
+    renderBookmarks();
     setupEventListeners();
 }
 
@@ -383,6 +681,103 @@ function renderSearchOptions() {
         `;
         searchOptionsContainer.appendChild(optionElement);
     });
+}
+
+// Render bookmarks
+function renderBookmarks() {
+    bookmarksContainer.innerHTML = '';
+    
+    // Group bookmarks by category
+    const bookmarksByCategory = {};
+    bookmarks.forEach(bookmark => {
+        if (!bookmarksByCategory[bookmark.category]) {
+            bookmarksByCategory[bookmark.category] = [];
+        }
+        bookmarksByCategory[bookmark.category].push(bookmark);
+    });
+    
+    // Create category cards
+    Object.keys(bookmarksByCategory).forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'bookmark-category';
+        categoryCard.dataset.category = category;
+        
+        const categoryColor = categoryColors[category] || '#808080';
+        
+        const categoryHeader = document.createElement('div');
+        categoryHeader.className = 'category-header';
+        categoryHeader.style.borderColor = categoryColor;
+        categoryHeader.style.color = categoryColor;
+        categoryHeader.textContent = category;
+        
+        const bookmarkList = document.createElement('div');
+        bookmarkList.className = 'bookmark-list';
+        
+        bookmarksByCategory[category].forEach(bookmark => {
+            const bookmarkLink = document.createElement('a');
+            bookmarkLink.href = bookmark.url;
+            bookmarkLink.className = 'bookmark-item';
+            bookmarkLink.target = '_blank';
+            bookmarkLink.textContent = bookmark.name;
+            bookmarkLink.dataset.name = bookmark.name.toLowerCase();
+            bookmarkLink.dataset.tags = bookmark.tags.join(' ').toLowerCase();
+            bookmarkLink.style.color = categoryColor;
+            
+            bookmarkList.appendChild(bookmarkLink);
+        });
+        
+        categoryCard.appendChild(categoryHeader);
+        categoryCard.appendChild(bookmarkList);
+        bookmarksContainer.appendChild(categoryCard);
+    });
+}
+
+// Filter bookmarks
+function filterBookmarks(searchTerm) {
+    const term = searchTerm.toLowerCase().trim();
+    const categories = document.querySelectorAll('.bookmark-category');
+    let visibleCount = 0;
+    
+    if (term === '') {
+        // Show all
+        categories.forEach(category => {
+            category.classList.remove('hidden');
+            const bookmarkItems = category.querySelectorAll('.bookmark-item');
+            bookmarkItems.forEach(item => item.classList.remove('hidden'));
+        });
+        noResults.classList.remove('show');
+        return;
+    }
+    
+    categories.forEach(category => {
+        const bookmarkItems = category.querySelectorAll('.bookmark-item');
+        let categoryHasVisibleItems = false;
+        
+        bookmarkItems.forEach(item => {
+            const name = item.dataset.name;
+            const tags = item.dataset.tags;
+            
+            if (name.includes(term) || tags.includes(term)) {
+                item.classList.remove('hidden');
+                categoryHasVisibleItems = true;
+                visibleCount++;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        
+        if (categoryHasVisibleItems) {
+            category.classList.remove('hidden');
+        } else {
+            category.classList.add('hidden');
+        }
+    });
+    
+    if (visibleCount === 0) {
+        noResults.classList.add('show');
+    } else {
+        noResults.classList.remove('show');
+    }
 }
 
 // Setup event listeners
@@ -404,6 +799,11 @@ function setupEventListeners() {
             performSearch(searchUrl);
         });
     });
+    
+    // Bookmarks search
+    bookmarksSearchInput.addEventListener('input', (e) => {
+        filterBookmarks(e.target.value);
+    });
 }
 
 // Perform the search
@@ -424,4 +824,5 @@ function performSearch(customUrl = null) {
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
     </script>
+</body>
 </html>
