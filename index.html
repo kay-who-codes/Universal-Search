@@ -316,8 +316,6 @@ const searchOptions = [
   
   
     // Search Engines
-  
-  
     {
         name: "Google",
         icon: "fab fa-google",
@@ -348,11 +346,7 @@ const searchOptions = [
         url: "https://www.rhymezone.com/r/rhyme.cgi?Word=",
         color: "#ecd13c" // Rhymezone yellow
     },
-  
-  
     // Gaming
-  
-  
     {
         name: "Steam DB",
         icon: "fa-brands fa-steam-symbol",
@@ -365,11 +359,7 @@ const searchOptions = [
         url: "https://www.cdkeys.com/#q=",
         color: "#5a91d7" // CD Keys blue
     },
-  
-  
     // Social Media
-  
-  
     {
         name: "Twitter",
         icon: "fab fa-twitter",
@@ -400,11 +390,7 @@ const searchOptions = [
         url: "https://www.pinterest.com/search/pins/?q=",
         color: "#E60023" // Pinterest red
     },
-  
-  
     // Shopping
-  
-  
     {
         name: "Amazon",
         icon: "fab fa-amazon",
@@ -429,11 +415,7 @@ const searchOptions = [
         url: "https://www.vinted.co.uk/catalog?search_text=",
         color: "#217682" // Vinted teal
     },
-  
-  
     // Entertainment
-  
-  
     {
         name: "IMDb",
         icon: "fab fa-imdb",
@@ -452,11 +434,7 @@ const searchOptions = [
         url: "https://soundcloud.com/search?q=",
         color: "#FF5500" // Soundcloud orange
     },
-  
-  
     // Learning
-  
-  
     {
         name: "Google Maps",
         icon: "fas fa-map-marker-alt",
@@ -499,11 +477,7 @@ const searchOptions = [
         url: "https://libgen.li/index.php?req=",
         color: "#1d3a87" // LibGen blue
     },
-  
-  
     // Programming
-  
-  
     {
         name: "GitHub",
         icon: "fab fa-github",
@@ -515,24 +489,54 @@ const searchOptions = [
 // Bookmarks data - easily editable by developers
 const bookmarks = [
   
-  
-    // Learning
-  
-  
+    // Entertainment 
     {
         name: "YouTube",
         url: "https://www.youtube.com/",
-        category: "Learning",
-        tags: ["education", "Video"]
+        category: "Entertainment",
+        tags: ["Entertainment", "Learning", "Video"]
     },
-  
-    
-    // Programming
-  
-  
+    {
+        name: "Spotify",
+        url: "https://open.spotify.com/",
+        category: "Entertainment",
+        tags: ["Entertainment", "Learning", "Podcast", "Music"]
+    },
+    {
+        name: "Rumble",
+        url: "https://rumble.com/",
+        category: "Entertainment",
+        tags: ["Entertainment", "Learning", "Podcast"]
+    },
+    // Prudence 
+    {
+        name: "To Do - Upcoming",
+        url: "https://app.todoist.com/app/upcoming",
+        category: "Prudence",
+        tags: ["Prudence", "Planning"]
+    },
+    {
+        name: "Calendar",
+        url: "https://calendar.google.com/calendar/u/0/r",
+        category: "Prudence",
+        tags: ["Prudence", "Planning"]
+    },
+    {
+        name: "Habitify",
+        url: "https://app.habitify.me/journal/all-habits",
+        category: "Prudence",
+        tags: ["Prudence", "Planning"]
+    },
+    // Programming 
     {
         name: "GitHub",
         url: "https://github.com",
+        category: "Programming",
+        tags: ["development", "code", "repository", "version control", "git"]
+    },
+    {
+        name: "GitHub Repos",
+        url: "https://github.com/kay-who-codes?tab=repositories",
         category: "Programming",
         tags: ["development", "code", "repository", "version control", "git"]
     },
@@ -542,22 +546,39 @@ const bookmarks = [
         category: "Programming",
         tags: ["development", "code", "frontend", "playground"]
     },
-  
-    
     // Reading
-  
-  
     {
         name: "Google Play Books",
         url: "https://play.google.com/books",
         category: "Reading",
         tags: ["Learning", "blog", "writing", "stories"]
     },
-  
-    
+    // Money 
+    {
+        name: "Nationwide",
+        url: "https://www.nationwide.co.uk/",
+        category: "Money",
+        tags: ["money", "fiat"]
+    },
+    {
+        name: "Yahoo Finance - Trending",
+        url: "https://uk.finance.yahoo.com/markets/stocks/trending/",
+        category: "Money",
+        tags: ["Learning", "money", "investing", "fiat"]
+    },
+               {
+        name: "eToro Watchlist",
+        url: "https://www.etoro.com/watchlists",
+        category: "Money",
+        tags: ["Learning", "money", "investing", "fiat"]
+    },
+    {
+        name: "Trading 212",
+        url: "https://www.trading212.com/",
+        category: "Money",
+        tags: ["Learning", "money", "investing", "fiat"]
+    },
     // Social Media
-  
-  
     {
         name: "Twitter",
         url: "https://twitter.com",
@@ -582,11 +603,20 @@ const bookmarks = [
         category: "Social Media",
         tags: ["social", "chat", "community", "voice"]
     },
-  
-    
-    // AI Chat
-  
-  
+    // Gaming 
+    {
+        name: "Lichess",
+        url: "http://lichess.org/",
+        category: "Gaming",
+        tags: ["gaming", "strategy", "multiplayer"]
+    },
+    {
+        name: "Board Game Arena",
+        url: "https://boardgamearena.com",
+        category: "Gaming",
+        tags: ["gaming", "Board Games", "multiplayer"]
+    },
+    // AI Chat 
     {
         name: "ChatGPT",
         url: "https://chat.openai.com",
@@ -611,44 +641,63 @@ const bookmarks = [
         category: "AI Chat",
         tags: ["ai", "chatbot", "private", "assistant"]
     },
-  
-    
-    // Tools
-  
-  
+    // Shopping 
     {
-        name: "Notion",
-        url: "https://www.notion.so",
-        category: "Tools",
-        tags: ["productivity", "notes", "workspace", "organization"]
+        name: "Amazon",
+        url: "https://www.amazon.co.uk/",
+        category: "Shopping",
+        tags: ["shopping"]
     },
     {
-        name: "Figma",
-        url: "https://www.figma.com",
-        category: "Tools",
-        tags: ["design", "ui", "ux", "prototype"]
+        name: "eBay",
+        url: "http://www.ebay.co.uk/",
+        category: "Shopping",
+        tags: ["shopping"]
     },
+    {
+        name: "Facebook Marketplace",
+        url: "http://facebook.com/marketplace",
+        category: "Shopping",
+        tags: ["shopping", "Secondhand"]
+    },
+    {
+        name: "Hot UK Deals",
+        url: "http://hotukdeals.com/",
+        category: "Shopping",
+        tags: ["shopping"]
+    },
+    {
+        name: "Loaded",
+        url: "http://loaded.com/",
+        category: "Shopping",
+        tags: ["shopping", "gaming"]
+    },
+    {
+        name: "Is There Any Deal",
+        url: "https://isthereanydeal.com/deals/#filter:N4Iglgdg6ghmAuAbMBneIBc8BOBXApgL5A==",
+        category: "Shopping",
+        tags: ["shopping", "gaming"]
+    },
+    // Tools 
     {
         name: "Canva",
         url: "https://www.canva.com",
         category: "Tools",
         tags: ["design", "graphics", "templates"]
-    },
-    {
-        name: "Trello",
-        url: "https://trello.com",
-        category: "Tools",
-        tags: ["productivity", "project management", "kanban"]
     }
 ];
 
 // Category colors - easily customizable
 const categoryColors = {
-    "Learning": "#4A90E2",
-    "Programming": "#50C878",
-    "Reading": "#FF8C42",
+    "Entertainment": "#3dd6f5",
+    "Prudence": "#f85d5d",
+    "Programming": "#4A90E2",
+    "Reading": "#50C878",
     "Social Media": "#9B59B6",
+    "Money": "#3de67e",
+    "Gaming": "#99f53d"
     "AI Chat": "#FF69B4",
+    "Shopping": "#99f53d",
     "Tools": "#FFD700"
 };
 
