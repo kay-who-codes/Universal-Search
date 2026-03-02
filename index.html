@@ -9,7 +9,7 @@
         :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
-    --text-primary: #e0e0e0;
+    --text-primary: lightgrey;
     --text-secondary: #a0a0a0;
     --accent-color: #ff8000;
     --accent-hover: #9a67ea;
@@ -770,7 +770,7 @@ function renderBookmarks() {
             bookmarkLink.textContent = bookmark.name;
             bookmarkLink.dataset.name = bookmark.name.toLowerCase();
             bookmarkLink.dataset.tags = bookmark.tags.join(' ').toLowerCase();
-            bookmarkLink.style.color = categoryColor;
+            bookmarkLink.style.color = lightgrey;
             
             bookmarkList.appendChild(bookmarkLink);
         });
