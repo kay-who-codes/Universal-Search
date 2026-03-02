@@ -770,7 +770,7 @@ function renderBookmarks() {
             bookmarkLink.textContent = bookmark.name;
             bookmarkLink.dataset.name = bookmark.name.toLowerCase();
             bookmarkLink.dataset.tags = bookmark.tags.join(' ').toLowerCase();
-            bookmarkLink.style.color = lightgrey;
+            bookmarkLink.style.color = "lightgrey";
             
             bookmarkList.appendChild(bookmarkLink);
         });
