@@ -68,7 +68,7 @@ const categoryColors = {
 
 ## 🚀 Usage
 
-No installation needed. Just open `index.html` (or `universal-search.html`) in any browser. To use it as your browser's homepage, point your browser's homepage setting to the local file path or hosted URL.
+No installation needed. Just open `index.html` in any browser. To use it as your browser's homepage, point your browser's homepage setting to the local file path or hosted URL.
 
 ---
 
