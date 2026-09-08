@@ -50,7 +50,7 @@
     gap: 8px;
 }
 
-#rss-search-input {
+#page08-search-input {
     width: 100%;
     background: var(--surface-2);
     border: 1px solid var(--border);
@@ -61,12 +61,12 @@
     font-size: 0.88rem;
 }
 
-#rss-search-input:focus {
+#page08-search-input:focus {
     outline: none;
     border-color: var(--accent);
 }
 
-#rss-search-input::placeholder {
+#page08-search-input::placeholder {
     color: var(--text-faint);
 }
 
@@ -467,34 +467,34 @@
 }
 </style>
 
-<div class="app">
-  <aside class="rail">
+<div class="rss-app">
+  <aside class="rss-rail">
     <span class="page08-eyebrow">08</span>
-    <h1>Dispatch<span>.</span></h1>
+    <h1>RSS Feeder<span>.</span></h1>
  
-    <div class="search-box">
+    <div class="rss-search-box">
       <input id="page08-search-input" type="text" placeholder="Search titles, categories, tags…" autocomplete="off">
-      <button id="page08-search-all-btn" type="button" class="search-all-btn" title="Search every feed, including ones not yet loaded">Search all feeds</button>
-      <div class="search-hint" id="page08-search-hint"></div>
+      <button id="page08-search-all-btn" type="button" class="rss-search-all-btn" title="Search every feed, including ones not yet loaded">Search all feeds</button>
+      <div class="rss-search-hint" id="page08-search-hint"></div>
     </div>
  
-    <nav class="tree" id="page08-feed-nav"></nav>
+    <nav class="rss-tree" id="page08-feed-nav"></nav>
  
-    <div class="rail-footer">
+    <div class="rss-rail-footer">
       Sources fetched live via a public RSS proxy.<br>
       <button id="page08-refresh-btn" type="button">Refresh current view</button>
     </div>
   </aside>
  
   <main>
-    <div class="main-head">
+    <div class="rss-main-head">
       <h2 id="page08-feed-title">Loading…</h2>
-      <span class="updated" id="page08-feed-updated"></span>
+      <span class="rss-updated" id="page08-feed-updated"></span>
     </div>
     <div id="page08-content">
-      <div class="skeleton"></div>
-      <div class="skeleton"></div>
-      <div class="skeleton"></div>
+      <div class="rss-skeleton"></div>
+      <div class="rss-skeleton"></div>
+      <div class="rss-skeleton"></div>
     </div>
   </main>
 </div>
@@ -567,10 +567,10 @@
  
     // "All" aggregate view
     const allBtn = document.createElement("button");
-    allBtn.className = "nav-item" + (view.mode === "all" ? " active" : "");
+    allBtn.className = "rss-nav-item" + (view.mode === "all" ? " rss-active" : "");
     allBtn.type = "button";
     const totalLoaded = FEEDS.reduce((sum, f) => sum + (cache[f.url] ? cache[f.url].items.length : 0), 0);
-    allBtn.innerHTML = `<span class="dot"></span><span>All feeds</span><span class="count">${totalLoaded || ""}</span>`;
+    allBtn.innerHTML = `<span class="rss-dot"></span><span>All feeds</span><span class="rss-count">${totalLoaded || ""}</span>`;
     allBtn.addEventListener("click", () => selectAll());
     feedNav.appendChild(allBtn);
  
@@ -579,12 +579,12 @@
       const isOpen = openCategories.has(category);
  
       const group = document.createElement("div");
-      group.className = "category-group";
+      group.className = "rss-category-group";
  
       const header = document.createElement("button");
       header.type = "button";
-      header.className = "category-header" + (isOpen ? " open" : "");
-      header.innerHTML = `<span class="chevron">▸</span><span>${escapeHtml(category)}</span><span class="count">${entries.length}</span>`;
+      header.className = "rss-category-header" + (isOpen ? " rss-open" : "");
+      header.innerHTML = `<span class="rss-chevron">▸</span><span>${escapeHtml(category)}</span><span class="rss-count">${entries.length}</span>`;
       header.addEventListener("click", () => {
         if (openCategories.has(category)) openCategories.delete(category);
         else openCategories.add(category);
@@ -593,13 +593,13 @@
       group.appendChild(header);
  
       const feedsWrap = document.createElement("div");
-      feedsWrap.className = "category-feeds" + (isOpen ? " open" : "");
+      feedsWrap.className = "rss-category-feeds" + (isOpen ? " rss-open" : "");
       entries.forEach(({ feed, index }) => {
         const btn = document.createElement("button");
-        btn.className = "nav-item" + (view.mode === "feed" && view.index === index ? " active" : "");
+        btn.className = "rss-nav-item" + (view.mode === "feed" && view.index === index ? " rss-active" : "");
         btn.type = "button";
         const count = cache[feed.url] ? cache[feed.url].items.length : "";
-        btn.innerHTML = `<span class="dot"></span><span>${escapeHtml(feed.name)}</span><span class="count">${count}</span>`;
+        btn.innerHTML = `<span class="rss-dot"></span><span>${escapeHtml(feed.name)}</span><span class="rss-count">${count}</span>`;
         btn.addEventListener("click", () => selectFeed(index));
         feedsWrap.appendChild(btn);
       });
@@ -701,17 +701,17 @@
     const showBadge = !!opts.showBadge;
  
     if (!items.length){
-      content.innerHTML = `<p class="status">${escapeHtml(opts.emptyText || "No items to show.")}</p>`;
+      content.innerHTML = `<p class="rss-status">${escapeHtml(opts.emptyText || "No items to show.")}</p>`;
       return;
     }
  
     content.innerHTML = "";
     const list = document.createElement("ul");
-    list.className = "items";
+    list.className = "rss-items";
     content.appendChild(list);
  
     const sentinel = document.createElement("div");
-    sentinel.className = "load-more-sentinel";
+    sentinel.className = "rss-load-more-sentinel";
     content.appendChild(sentinel);
  
     let rendered = 0;
@@ -743,15 +743,15 @@
   function buildItemNode(item, showBadge){
     const feed = item._feed || {};
     const li = document.createElement("li");
-    li.className = "item";
+    li.className = "rss-item";
  
     const snippetText = stripHtml(item.description || item.content || "").trim();
     const thumbUrl = extractThumbnail(item);
     const initial = (item.title || "?").trim().charAt(0).toUpperCase();
  
     const thumbHtml = thumbUrl
-      ? `<img class="thumb" src="${escapeHtml(thumbUrl)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;thumb placeholder&quot;>${escapeHtml(initial)}</div>'">`
-      : `<div class="thumb placeholder">${escapeHtml(initial)}</div>`;
+      ? `<img class="rss-thumb" src="${escapeHtml(thumbUrl)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;rss-thumb rss-placeholder&quot;>${escapeHtml(initial)}</div>'">`
+      : `<div class="rss-thumb rss-placeholder">${escapeHtml(initial)}</div>`;
  
     // Reading-time estimate disabled — RSS summaries are too short/unreliable
     // to give a meaningful read-time for the full article. Left in place,
@@ -760,22 +760,22 @@
     // const mins = words > 0 ? readingTime(words) : null;
  
     const badgeHtml = showBadge && feed.name
-      ? `<span class="source-badge">${escapeHtml(feed.name)}</span><span class="sep">·</span>`
+      ? `<span class="rss-source-badge">${escapeHtml(feed.name)}</span><span class="rss-sep">·</span>`
       : "";
     const categoryHtml = feed.category
-      ? `<span class="category">${escapeHtml(feed.category)}</span><span class="sep">·</span>`
+      ? `<span class="rss-category">${escapeHtml(feed.category)}</span><span class="rss-sep">·</span>`
       : "";
     const tagsAttr = (feed.tags || []).join(",");
  
     li.innerHTML = `
-      <div class="thumb-wrap">
+      <div class="rss-thumb-wrap">
         ${thumbHtml}
-        <div class="date">${formatDate(item.pubDate)}</div>
+        <div class="rss-date">${formatDate(item.pubDate)}</div>
       </div>
       <div>
         <h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></h3>
-        ${snippetText ? `<p class="snippet">${escapeHtml(snippetText.slice(0, MAX_SNIPPET_CHARS))}${snippetText.length > MAX_SNIPPET_CHARS ? "…" : ""}</p>` : ""}
-        <div class="meta">
+        ${snippetText ? `<p class="rss-snippet">${escapeHtml(snippetText.slice(0, MAX_SNIPPET_CHARS))}${snippetText.length > MAX_SNIPPET_CHARS ? "…" : ""}</p>` : ""}
+        <div class="rss-meta">
           ${badgeHtml}
           ${categoryHtml}
           <span>${timeAgo(item.pubDate)}</span>
@@ -788,9 +788,9 @@
  
   function renderSkeleton(){
     content.innerHTML = `
-      <div class="skeleton"></div>
-      <div class="skeleton"></div>
-      <div class="skeleton"></div>
+      <div class="rss-skeleton"></div>
+      <div class="rss-skeleton"></div>
+      <div class="rss-skeleton"></div>
     `;
   }
  
@@ -814,7 +814,7 @@
       renderItemList(entry.items, { showBadge: false });
       renderNav();
     } catch (err) {
-      content.innerHTML = `<p class="status error">Couldn't load this feed — ${escapeHtml(err.message)}. The proxy service may be rate-limited; try refreshing in a moment.</p>`;
+      content.innerHTML = `<p class="rss-status rss-error">Couldn't load this feed — ${escapeHtml(err.message)}. The proxy service may be rate-limited; try refreshing in a moment.</p>`;
       feedUpdated.textContent = "";
     }
   }
