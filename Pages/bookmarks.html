@@ -405,7 +405,12 @@
             <button class="page-toggle-btn" id="page-toggle" title="Switch bookmark page">
                 <span id="page-toggle-label">🥇</span>
             </button>
-            <div class="page-toggle-menu hidden" id="page-toggle-menu"></div>
+            <div class="page-toggle-menu hidden" id="page-toggle-menu">
+                <button class="page-toggle-option" data-page="primary">🥇 Bookmarks</button>
+                <button class="page-toggle-option" data-page="secondary">🥈 Secondary</button>
+                <button class="page-toggle-option" data-page="tertiary">🥉 Tertiary</button>
+                <button class="page-toggle-option" data-page="appdev">🎁 App Dev</button>
+            </div>
         </div>
         <button class="density-btn" id="density-toggle" title="Toggle compact view">
             <i class="fas fa-grip-lines"></i>
@@ -640,32 +645,34 @@
 
     ];
 
+    // 🎁 App Dev Page
+
+    const bookmarksAppdev = [
+        {"name":"Test","url":"https://test.com","category":"General","tags":["ball"]}
+    ];
+
     const PAGE_DATA = {
         primary: bookmarksPrimary,
-        secondary: bookmarksSecondary
+        secondary: bookmarksSecondary,
+        tertiary: bookmarksTertiary,
+        appdev: bookmarksAppdev
     };
-    // Extend the (redacted) PAGE_DATA object with the new tertiary page without touching its original contents.
-    PAGE_DATA.tertiary = bookmarksTertiary;
- 
+
     const PAGE_LABELS = {
-        primary: { title: 'Bookmarks', subtitle: '', toggleShows: '🥇' },
-        secondary: { title: 'Secondary Bookmarks', subtitle: '', toggleShows: '🥈' }
-    };
-    // Extend the (redacted) PAGE_LABELS object with the new tertiary page without touching its original contents.
-    PAGE_LABELS.tertiary = {
-        title: "Tertiary Bookmarks",
-        subtitle: "Quick access to your favorite sites.",
-        toggleShows: "🥉"
+        primary: { title: "Bookmarks", subtitle: "Quick access to your favorite sites.", toggleShows: "🥇" },
+        secondary: { title: "Secondary Bookmarks", subtitle: "Quick access to your favorite sites.", toggleShows: "🥈" },
+        tertiary: { title: "Tertiary Bookmarks", subtitle: "Quick access to your favorite sites.", toggleShows: "🥉" },
+        appdev: { title: "App Dev", subtitle: "Quick access to your favourite sites.", toggleShows: "🎁" }
     };
 
     // Single source of truth for page emoji, used by both the toggle menu
     // and the per-result page tags shown in search results.
-    const PAGE_EMOJI = { primary: '🥇', secondary: '🥈', tertiary: '🥉' };
     function emojiForPage(page) {
-        return PAGE_EMOJI[page] || '🥉';
+        return (PAGE_LABELS[page] && PAGE_LABELS[page].toggleShows) || '';
     }
- 
-    const VISIBLE_LIMIT = 8;
+
+
+const VISIBLE_LIMIT = 8;
  
     // Unique color per category (hue-based, used for accent + glow)
     const categoryColors = {
@@ -792,7 +799,7 @@
                 bookmarkLink.dataset.page = bookmark.__page;
                 const tag = document.createElement('span');
                 tag.className = 'page-tag';
-                const pageEmoji = emojiForPage(bookmark.__page);
+                const pageEmoji = (PAGE_LABELS[bookmark.__page] && PAGE_LABELS[bookmark.__page].toggleShows) || '';
                 tag.textContent = ` (${pageEmoji})`;
                 bookmarkLink.appendChild(tag);
             }
@@ -838,9 +845,7 @@
     function renderSearchResults(term) {
         bookmarksContainer.innerHTML = '';
 
-        const combined = Object.keys(PAGE_DATA).flatMap(page =>
-            PAGE_DATA[page].map(b => ({ ...b, __page: page }))
-        );
+        const combined = Object.keys(PAGE_DATA).flatMap(page => PAGE_DATA[page].map(b => ({ ...b, __page: page })));
 
         const matched = combined.filter(b =>
             b.name.toLowerCase().includes(term) ||
